@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Sayang 💖</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 18px;
+      animation: fall linear infinite;
+      color: #ff69b4;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    /* Cursor typing */
+    .cursor::after {
+      content: "|";
+      animation: blink 1s infinite;
+      margin-left: 4px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-pink-300 via-pink-200 to-white min-h-screen flex items-center justify-center overflow-y-auto">
+
+  <!-- Musik -->
+  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Card Utama -->
+  <div class="bg-white/90 backdrop-blur-md w-[95%] max-w-xl rounded-3xl shadow-2xl p-6 text-center z-10">
+
+    <h1 class="text-3xl md:text-4xl font-extrabold text-pink-500 mb-2">
+      Happy Birthday Jiwaa🎂
+    </h1>
+    <h2 class="text-lg text-pink-400 mb-4">
+      My Favorite Person 💕
+    </h2>
+
+    <!-- Grid 5 Foto -->
+    <div class="grid grid-cols-3 gap-3 mb-5">
+      <img src="foto1.png" class="rounded-2xl shadow-md hover:scale-105 transition">
+      <img src="foto2.png" class="rounded-2xl shadow-md hover:scale-105 transition">
+      <img src="foto3.png" class="rounded-2xl shadow-md hover:scale-105 transition">
+      <img src="foto4.png" class="rounded-2xl shadow-md hover:scale-105 transition col-span-2">
+      <img src="foto5.png" class="rounded-2xl shadow-md hover:scale-105 transition">
+    </div>
+
+    <!-- Typing Text -->
+    <p id="typingText"
+   class="text-gray-600 leading-relaxed mb-6 
+          min-h-[120px] whitespace-pre-line">
+</p>
+    <!-- Tombol -->
+    <div class="flex flex-col gap-3">
+      <button onclick="playMusic()"
+        class="bg-pink-400 hover:bg-pink-500 text-white py-2 rounded-full shadow transition">
+        🎶 Putar Musik
+      </button>
+
+      <button onclick="showSurprise()"
+        class="bg-pink-200 hover:bg-pink-300 text-pink-700 py-2 rounded-full shadow transition">
+        🎁 Buka ini iping
+      </button>
+    </div>
+
+    <!-- Surprise -->
+    <div id="surprise" class="hidden mt-6 text-pink-600 text-xl font-bold animate-pulse">
+      selamat ulang tahun jiwaa❤️
+      selamat bertambah usia yang ke-19 tahun, semoga diumur yang sekarang bakal lebih baik lagii dari yang sebelumnya,
+      dihari yang spesial ini, aku harap kamu selalu dikelilingi orang orang yang baik dan sayang sama kamu,
+      jangan pernah insacure yaa, kamu itu udah sempurna dimataku, jadilah perempuan yang hebatt🤗,
+      semoga langkah yang kamu ambil kedepannya menjadi langkah yang terbaik buat kamu dimasa depan,
+      jadilah jiwaa yang aku kenal yaa🤗,
+      semoga kedepannya bisa makin cantik, sayang sama diri sendiri dan yang terpenting nurut sama orang tua, okeyy😉
+      i wish you have always good day🤗
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Musik
+    function playMusic() {
+      document.getElementById("music").play();
+    }
+
+    // Surprise
+    function showSurprise() {
+      document.getElementById("surprise").classList.remove("hidden");
+    }
+
+    // Typing Effect
+    const text = 
+      "Happy Birthday Jiwaa\n" +
+      "Dari semua hal yang indah di dunia ini,\n" +
+      "yappingmu adalah favoritku.\n" +
+      "Terima kasih sudah menjadi orang sepesial dalam hidupku,\n" +
+      "jadillah jiwaa yang kukenal yaa, jiwaa yang selalu ceria setiap saat💖";
+
+    let index = 0;
+    const speed = 50;
+    const target = document.getElementById("typingText");
+
+    function typeEffect() {
+      if (index < text.length) {
+        target.innerHTML += text[index] === "\n" ? "<br>" : text[index];
+        index++;
+        setTimeout(typeEffect, speed);
+      }
+    }
+
+    typeEffect();
+
+    // Hati jatuh
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 250);
+  </script>
+
+</body>
+</html>

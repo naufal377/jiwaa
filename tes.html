@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultah Romantis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff69b4, #ffffff);
+            font-family: 'Arial', sans-serif;
+        }
+        .heart {
+            position: absolute;
+            color: #ff1493;
+            font-size: 2rem;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { top: -10%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+</head>
+<body class="text-white text-center overflow-hidden">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-pulse">Selamat Ulang Tahun, Orang Spesial!</h1>
+        <p class="text-lg md:text-xl mb-8">Kamu adalah cahaya dalam hidupku. Semoga hari ini penuh kebahagiaan dan cinta.</p>
+        
+        <!-- Slideshow Foto -->
+        <div class="relative w-full max-w-md h-64 md:h-80 mb-8">
+            <img id="photo" src="https://via.placeholder.com/400x300/ff69b4/ffffff?text=Foto+1" alt="Foto 1" class="w-full h-full object-cover rounded-lg shadow-lg transition-opacity duration-1000">
+        </div>
+        
+        <p class="text-sm md:text-base italic">Klik tombol di bawah untuk melihat kenangan kita.</p>
+        <button id="nextBtn" class="mt-4 px-6 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-full transition">Lihat Foto Berikutnya</button>
+    </div>
+
+    <!-- Hati Jatuh Animasi -->
+    <div id="hearts" class="absolute inset-0 pointer-events-none"></div>
+
+    <script>
+        const photos = [
+            "https://via.placeholder.com/400x300/ff69b4/ffffff?text=Foto+1",
+            "https://via.placeholder.com/400x300/ff69b4/ffffff?text=Foto+2",
+            "https://via.placeholder.com/400x300/ff69b4/ffffff?text=Foto+3",
+            "https://via.placeholder.com/400x300/ff69b4/ffffff?text=Foto+4",
+            "https://via.placeholder.com/400x300/ff69b4/ffffff?text=Foto+5"
+        ];
+        let currentIndex = 0;
+        const photoElement = document.getElementById('photo');
+        const nextBtn = document.getElementById('nextBtn');
+        const heartsContainer = document.getElementById('hearts');
+
+        // Slideshow
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % photos.length;
+            photoElement.src = photos[currentIndex];
+            photoElement.alt = `Foto ${currentIndex + 1}`;
+        });
+
+        // Animasi Hati Jatuh
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 1000);
+    </script>
+</body>
+</html>
